@@ -8,42 +8,47 @@
 import SwiftUI
 
 struct ContentView: View {
+    var text1: [String] = ["Hello", "World"]
+    var text2: [String] = ["Hello", "Hello", "Hello", "World", "World"]
     var body: some View {
         VStack {
-            // 첫 번째 섹션
-            SectionView(texts: ["Hello", "World"])
-            
-            Color.white
-                .frame(height: 20)
-            
-            // 두 번째 섹션
-            SectionView(texts: ["Hello", "Hello", "Hello", "World", "World"])
-        }
-        .background(Color.yellow)
-    }
-}
-struct SectionView: View {
-    var texts: [String]
-    
-    var body: some View {
-        HStack(alignment: .top) {
-            Image(systemName: "person.fill")
-                .resizable()
-                .frame(width: 80, height: 80)
-                .padding()
-            
-            VStack(alignment: .leading, spacing: 5) {
-                ForEach(texts.indices, id: \.self) { index in
-                    Text(texts[index])
-                        .foregroundColor(texts[index] == "Hello" ? Color.blue : Color.black)
+            HStack {
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .frame(width: 80, height: 80)
+                
+                VStack {
+                    ForEach(text1.indices, id: \.self) { index in
+                        Text(text1[index])
+                            .foregroundColor(text1[index] == "Hello" ? Color.blue : Color.black)
+                            
+                    }
+                    
                 }
             }
             .padding()
-            Spacer()
+            .background(Color.yellow)
+            Spacer().frame(height:20)
+            
+            HStack {
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .frame(width: 80, height: 80)
+                
+                VStack {
+                    ForEach(text2.indices, id: \.self) { index in
+                        Text(text2[index])
+                            .foregroundColor(text2[index] == "Hello" ? Color.blue : Color.black)
+                            
+                    }
+                    
+                }
+            }
+            .padding()
+            .background(Color.yellow)
         }
-        .cornerRadius(10)
-        .padding()
     }
+    
 }
 
 #Preview {
